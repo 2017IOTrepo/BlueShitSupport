@@ -1,0 +1,43 @@
+{
+    "name": "lanmoyun",
+    "version": "1.0.0",
+    "main": "dist/app.js",
+    "description": "用在一个垃圾课上的垃圾东西",
+    "author": "xmmmmmovo",
+    "license": "MIT",
+    "scripts": {
+        "start": "tsc -p . && node ./dist/app.js",
+        "build": "tsc -p ."
+    },
+    "dependencies": {
+        "axios": "^0.19.2",
+        "cheerio": "^1.0.0-rc.3",
+        "mysql": "^2.18.1"
+    },
+    "devDependencies": {
+        "@types/axios": "^0.14.0",
+        "@types/cheerio": "^0.22.16",
+        "@types/mysql": "^2.15.8"
+    },
+    "eslintConfig": {
+        "root": true,
+        "env": {
+            "node": true,
+            "es6": true
+        },
+        "extends": [
+            "eslint:recommended"
+        ],
+        "rules": {
+            "no-console": "off",
+            "no-useless-escape": "off"
+        },
+        "parserOptions": {
+            "parser": "@typescript-eslint/parser"
+        }
+    },
+    "browserslist": [
+        "> 1%",
+        "last 2 versions"
+    ]
+}
