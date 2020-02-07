@@ -44,6 +44,7 @@ const fetchData = async () => {
     console.log(titles, urls);
     writeFileSync('cache/title.txt', titles)
     writeFileSync('cache/urls.txt', urls)
+    writeFileSync('cache/src_page.html', res)
 }
 
 const main = async () => {
@@ -52,12 +53,14 @@ const main = async () => {
         existsSync('cache/title.txt') &&
         existsSync('cache/urls.txt')
     ) {
+        console.log('--------正在从已知文件中读取---------')
         urls = readFileSync('cache/urls.txt')
             .toString().split(',')
         titles = readFileSync('cache/title.txt')
             .toString().split(',')
         console.log(titles, urls)
     } else {
+        console.log('--------正在网站中读取---------')
         await fetchData()
     }
 }
