@@ -4,6 +4,7 @@ import {sleep} from "./util";
 import jsyaml from "js-yaml"
 import {existsSync, readFileSync, writeFileSync} from "fs";
 import {stringify} from "querystring";
+import path from "path";
 
 export let config: any
 let urls: string[] = [];
@@ -36,13 +37,25 @@ const fetchData = async () => {
                 .attribs['data-is-drag']
 
             if (dataIsDrag == 'N') {
+                if (path.extname(
+                    // @ts-ignore
+                    $(element)
+                        .find('.res-info')
+                        .find('.overflow-ellipsis')
+                        .find('.res-name')
+                        .text()
+                ) == '.mp4') {
+                    return
+                }
+
                 titles.push(
                     // @ts-ignore
                     $(element)
                         .find('.res-info')
                         .find('.overflow-ellipsis')
-                        .find('span')
-                        .attr('title')
+                        .find('.res-name')
+                        .text()
+                        // .attr('title')
                         .trim()
                 );
                 // @ts-ignore
@@ -57,7 +70,12 @@ const fetchData = async () => {
 }
 
 const scoreScriptStart = async () => {
-
+    for (let i = 0; i < 5; i++) {
+        console.log('start' + i)
+        // 这里没用await因为最后promise会转换为data
+        let data = remote_get(urls[i])
+        console.log(data)
+    }
 }
 
 const main = async () => {
