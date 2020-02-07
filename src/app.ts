@@ -1,4 +1,4 @@
-import {remote_get} from './api'
+import {remote_get, remote_post} from './api'
 import * as cheerio from 'cheerio'
 import {sleep} from "./util";
 import jsyaml from "js-yaml"
@@ -21,30 +21,43 @@ const init = async () => {
 }
 
 const fetchData = async () => {
-    const res: any = await remote_get(config['url'])
+    const res: any = await remote_get(config['url'] + config['crouse_id'])
     // console.log(res)
     const $ = cheerio.load(res);
     // 获取网页中的数据，分别写到两个数组里面
     $('.hide-div')
         .children()
         .each((index, element) => {
-            titles.push(
+            let dataIsDrag = $(element)
+                .find('.res-info')
+                .find('.create-box')
+                .children()
+                .get().slice(-3, -2)[0]
+                .attribs['data-is-drag']
+
+            if (dataIsDrag == 'N') {
+                titles.push(
+                    // @ts-ignore
+                    $(element)
+                        .find('.res-info')
+                        .find('.overflow-ellipsis')
+                        .find('span')
+                        .attr('title')
+                        .trim()
+                );
                 // @ts-ignore
-                $(element)
-                    .find('.res-info')
-                    .find('.overflow-ellipsis')
-                    .find('span')
-                    .attr('title')
-                    .trim()
-            );
-            // @ts-ignore
-            urls.push($(element).attr('data-href').trim());
+                urls.push($(element).attr('data-href').trim());
+            }
         })
     // 打印数组
     console.log(titles, urls);
     writeFileSync('cache/title.txt', titles)
     writeFileSync('cache/urls.txt', urls)
     writeFileSync('cache/src_page.html', res)
+}
+
+const scoreScriptStart = async () => {
+
 }
 
 const main = async () => {
@@ -63,6 +76,10 @@ const main = async () => {
         console.log('--------正在网站中读取---------')
         await fetchData()
     }
+
+    scoreScriptStart()
 }
 
 main()
+// init()
+// fetchData()
