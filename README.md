@@ -27,6 +27,10 @@
 
 > pip install -r requirements.txt
 
+- 配置文件
+
+> 配置留空处 已经写好注释
+
 - 运行
 
 > python ./src/app.py
