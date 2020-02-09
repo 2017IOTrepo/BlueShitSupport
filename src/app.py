@@ -86,9 +86,9 @@ def get_course_src():
         .children() \
         .each(fun_iter)
 
-    file_write('urls', urls)
-    file_write('titles', titles)
-    file_write('res_id', res_id)
+    # file_write('urls', urls)
+    # file_write('titles', titles)
+    # file_write('res_id', res_id)
 
 
 async def video_score(i):
@@ -106,17 +106,18 @@ async def video_score(i):
         url=config['url_config']['video_url'],
         data=data
     )
-    pprint(str(i) + str(resp))
+    pprint(str(titles[i]) + str(resp))
 
 
 async def other_score(i):
     resp = get(url=urls[i])
-    pprint(str(i) + str("normal_complete"))
+    pprint(str(titles[i]) + str("normal_complete"))
 
 
 async def score_async(i):
-    ext = os.path.splitext(titles[i])[1]
-    if ext == '.mp4':
+    p = os.path.splitext(titles[i])
+    pprint(p[0])
+    if p[1] == '.mp4':
         await video_score(i)
     else:
         await other_score(i)
