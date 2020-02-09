@@ -1,0 +1,14 @@
+app:
+  # 课程id
+  crouse_id: 
+  # 每日要刷的经验值数量
+  exp_speed: 30
+
+url_config:
+  base_url: https://www.mosoteach.cn/web/index.php?c=res&m=index&clazz_course_id=
+  video_url: https://www.mosoteach.cn/web/index.php?c=res&m=save_watch_to
+  User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36
+  # 这里填入你自己的cookie
+  Cookie: 
+  # 防止token过期写的登录页面 post method
+  login_url: https://www.mosoteach.cn/web/index.php?c=passport&m=account_login
