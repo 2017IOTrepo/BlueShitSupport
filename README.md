@@ -4,8 +4,8 @@
 
 ### 功能介绍
 
-- [ ] 刷课件/资源
-    - [ ] 视频文件
+- [x] 刷课件/资源
+    - [x] 视频文件
     - [x] 其他文件
     - [x] 每日经验值限制
 - [ ] 自动化做题/活动
@@ -25,15 +25,12 @@
 
 - 安装依赖
 
-> yarn install
+> pip install -r requirements.txt
 
-- 纯编译
+- 运行
 
-> yarn build
-
-- 编译+运行
-
-> yarn start
+> python ./src/app.py
 
 ### 效果图
 
+![test](pic/test.jpg)

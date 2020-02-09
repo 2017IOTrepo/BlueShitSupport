@@ -5,7 +5,7 @@ import requests
 import yaml
 from pyquery import PyQuery
 
-from src.video import Mp4info
+from video import Mp4info
 
 config = None
 titles = []
@@ -36,7 +36,7 @@ def post(url, data=None):
 
 
 def file_write(name: str, data: list):
-    file = open(f'../cache/{name}.txt', 'w', encoding='utf8')
+    file = open(f'cache/{name}.txt', 'w', encoding='utf8')
     file.write('\n'.join(data))
     file.close()
 
@@ -44,14 +44,14 @@ def file_write(name: str, data: list):
 def config_load():
     global config
     config = yaml.load(
-        open(r'../config.yaml', encoding='utf8'),
+        open(r'config.yaml', encoding='utf8'),
         Loader=yaml.FullLoader
     )
 
 
 def get_course_src():
     resp_text = get(
-        config['url_config']['base_url'] + config['app']['crouse_id']
+        config['url_config']['base_url'] + config['app']['course_id']
     )
     parser = PyQuery(resp_text)
 
@@ -96,7 +96,7 @@ async def video_score(i):
     d = file.get_duration()
     pprint(d)
     data = {
-        'clazz_course_id': '432F3210-2FA6-11EA-BA85-506B4B4A8386',
+        'clazz_course_id': config['app']['course_id'],
         'res_id': res_id[i],
         'watch_to': int(d) + 1,
         'duration': int(d) + 1,

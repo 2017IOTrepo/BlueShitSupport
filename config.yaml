@@ -1,6 +1,6 @@
 app:
   # 课程id
-  crouse_id: 
+  course_id: 
   # 每日要刷的经验值数量
   exp_speed: 30
 
