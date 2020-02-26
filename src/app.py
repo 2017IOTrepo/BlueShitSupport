@@ -1,3 +1,11 @@
+"""
+/**
+ * author: xmmmmmovo
+ * generation time: 2020/02/26
+ * filename: app.py
+ * language & build version : python3.6
+*/
+"""
 import os
 import asyncio
 from pprint import pprint
